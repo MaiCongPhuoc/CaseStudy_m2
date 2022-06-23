@@ -16,7 +16,7 @@ public class AdminView {
 
     public void adminLogin() {
         boolean isRetry;
-        System.out.println("══════════════════════════ DANG NHAP HE THONG ══════════════════════════");
+        System.out.println("\t\t\t\t══════════════════════════ DANG NHAP HE THONG ══════════════════════════");
         do {
             System.out.print("Username: ");
             String username = AppUtils.retryString("username");

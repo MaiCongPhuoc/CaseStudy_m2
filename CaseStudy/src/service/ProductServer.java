@@ -51,7 +51,7 @@ public class ProductServer implements IProductService {
                         product.getId(),
                         product.getTitle(),
                         InstantUtils.doubleToVND(product.getPrice()),
-                        product.getQuantity(),
+                        InstantUtils.quantityProducts(product.getQuantity()),
                         InstantUtils.instantToString(product.getCreatedAt()),
                         InstantUtils.instantToString(product.getUpdatedAt()));
                 return;
@@ -68,7 +68,7 @@ public class ProductServer implements IProductService {
                         product.getId(),
                         product.getTitle(),
                         InstantUtils.doubleToVND(product.getPrice()),
-                        product.getQuantity(),
+                        InstantUtils.quantityProducts(product.getQuantity()),
                         InstantUtils.instantToString(product.getCreatedAt()),
                         InstantUtils.instantToString(product.getUpdatedAt()));
                 return;
@@ -86,6 +86,15 @@ public class ProductServer implements IProductService {
 //        newProduct.setId(System.currentTimeMillis() / 1000);
         newProduct.setCreatedAt(Instant.now());
         List<Product> productList = findAll();
+        for (Product product : productList) {
+            String newmane = newProduct.getTitle().replace(" ", "").toLowerCase();
+            String nameProduct = product.getTitle().replace(" ", "").toLowerCase();
+            if (newmane.equals(nameProduct) && newProduct.getPrice().equals(product.getPrice())) {
+                product.setQuantity(product.getQuantity() + newProduct.getQuantity());
+                CSVUtils.write(PATHPRODUCT, productList);
+                return;
+            }
+        }
         productList.add(newProduct);
         CSVUtils.write(PATHPRODUCT, productList);
     }
@@ -167,9 +176,9 @@ public class ProductServer implements IProductService {
     @Override
     public void updateQuantityy(long id, int quantity) {
         List<Product> productList = findAll();
-        for (Product product: productList) {
-            if(product.getId() == id) {
-                if(product.getQuantity() >= quantity) {
+        for (Product product : productList) {
+            if (product.getId() == id) {
+                if (product.getQuantity() >= quantity) {
                     product.setQuantity(product.getQuantity() - quantity);
                     CSVUtils.write(PATHPRODUCT, productList);
                     break;

@@ -20,16 +20,16 @@ public class ProductView {
     }
 
     public void showProduct() {
-        System.out.println("\t▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬ DANH SACH SAN PHAM ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬");
-        System.out.printf("\t│\t\t%-6s   ││        %-15s   ││       %-14s   ││   %12s      ││       %-13s    ││    %16s       │\n", "ID", "Ten san pham", "Gia san pham", "So luong", "Ngay tao", "Ngay cap nhat");
+        System.out.println("\t▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬ DANH SACH SAN PHAM ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬");
+        System.out.printf("\t│\t\t%-6s   ││        %-15s   ││       %-15s   ││   %12s      ││       %-13s    ││    %16s       │\n", "ID", "Ten san pham", "Gia san pham", "So luong", "Ngay tao", "Ngay cap nhat");
         System.out.println("\t▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬");
         List<Product> products = productService.findAll();
         for (Product product : products) {
-            System.out.printf("\t│\t%-10s   ││   %-20s   ││    %14s      ││   %12s      ││    %-15s    ││    %19s    │\n",
+            System.out.printf("\t│\t%-10s   ││   %-20s   ││    %15s      ││     %12s    ││    %-15s    ││    %19s    │\n",
                     product.getId(),
                     product.getTitle(),
                     InstantUtils.doubleToVND(product.getPrice()),
-                    product.getQuantity(),
+                    InstantUtils.quantityProducts(product.getQuantity()),
                     InstantUtils.instantToString(product.getCreatedAt()),
                     product.getUpdatedAt() == null ? "" : InstantUtils.instantToString(product.getUpdatedAt())
             );
@@ -207,15 +207,20 @@ public class ProductView {
         System.out.println("Nhap ten san pham: ");
         System.out.print("═╬═══► ");
         String nameProduct = scanner.nextLine();
-        do {
-            if (nameProduct.isEmpty()) {
-                System.out.println("Ten san pham khong duoc de trong");
-                System.out.print("═╬═══► ");
-                nameProduct = scanner.nextLine();
-                continue;
-            }
-            break;
-        } while (true);
+        while (nameProduct.trim().equals("")) {
+            System.out.println("Ten san pham khong duoc de trong");
+            System.out.print("═╬═══► ");
+            nameProduct = scanner.nextLine();
+        }
+//        do {
+//            if (nameProduct.isEmpty()) {
+//                System.out.println("Ten san pham khong duoc de trong");
+//                System.out.print("═╬═══► ");
+//                nameProduct = scanner.nextLine();
+//                continue;
+//            }
+//            break;
+//        } while (true);
         return nameProduct;
     }
 
