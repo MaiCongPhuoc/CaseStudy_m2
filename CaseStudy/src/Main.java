@@ -9,8 +9,6 @@ public class Main {
     static Scanner input = new Scanner(System.in);
 
     public static void main(String[] args) {
-//        ProductView productView = new ProductView();
-//        productView.launch();
         MainLauncher.lauch();
     }
 }

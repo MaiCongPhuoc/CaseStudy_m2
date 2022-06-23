@@ -58,7 +58,7 @@ public class UserService implements IUserService {
     public void update(User newUser) {
         List<User> users = findAll();
         for (User user : users) {
-            System.out.println(user.getId());
+//            System.out.println(user.getId());
             if (user.getId().equals(newUser.getId())) {
                 String fullName = newUser.getFullName();
                 if (fullName != null && !fullName.isEmpty())

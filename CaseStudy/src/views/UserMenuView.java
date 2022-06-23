@@ -43,7 +43,7 @@ public class UserMenuView {
         } while (option != 5);
     }
     public static void menuUser() {
-        System.out.println("\t ███████████ USERS MANAGER ███████████████");
+        System.out.println("\t ████████ QUAN LI NGUOI DUNG █████████████");
         System.out.println("\t █                                       █");
         System.out.println("\t █      1. Them nguoi dung               █");
         System.out.println("\t █      2. Sua thong tin nguoi dung      █");

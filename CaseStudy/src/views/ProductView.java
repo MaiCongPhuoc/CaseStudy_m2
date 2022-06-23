@@ -151,7 +151,7 @@ public class ProductView {
         while (true) {
             System.out.print("\t\t████████████████████████████████████████████████████████████████████████████████████████████████████" +
                     "\n\t\t█                                                                                                  █" +
-                    "\n\t\t█                                       PRODUCT MANAGEMENT                                         █" +
+                    "\n\t\t█                                        QUAN LI SAN PHAM                                          █" +
                     "\n\t\t█                                           Main Menu                                              █" +
                     "\n\t\t█                                                                                                  █" +
                     "\n\t\t█                   1. Hien thi danh sach.                                                         █" +
@@ -244,9 +244,10 @@ public class ProductView {
         do {
             System.out.println("nhap gia san pham (vd: 10.000 VND )");
             double price = scanner.nextDouble();
-            if (price < 0 || price % 1000 != 0) {
-                System.out.println("Nhap khong dung! Vui long nhap lai");
-//                price = scanner.nextDouble();
+            if ((price < 0 || price % 1000 != 0) || price > 100000) {
+                System.out.println("Nhap khong dung! Vui long nhap lai (gia phai be hon 100.000 NVD)");
+                System.out.print("═╬═══► :");
+                price = scanner.nextDouble();
                 continue;
             }
             return price;

@@ -50,7 +50,7 @@ public class MainLauncher {
     }
 
     public static void mainmenu() {
-        System.out.println("\t ███████████████ MAIN MENU ███████████████");
+        System.out.println("\n\t ███████████████ MAIN MENU ███████████████");
         System.out.println("\t █                                       █");
         System.out.println("\t █      1. Quan li nguoi dung            █");
         System.out.println("\t █      2. Quan li kho                   █");
