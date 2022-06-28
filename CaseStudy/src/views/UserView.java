@@ -20,8 +20,28 @@ public class UserView {
     }
 
     public void deleUser(InputOption option) {
-        
+//        User newuser = new User();
+//        long idUser = inputId();
+//        newuser.setId(idUser);
+//        userService.deleteUser(newuser);
+//        System.out.println("xoa thanh cong!");
     }
+
+//    public int inputId() {
+//        System.out.println("nhap id can xoa:");
+//        System.out.print("═╬═══► :");
+//        int id = Integer.parseInt(scanner.nextLine());
+//        while (id <= 0) {
+//            System.out.println("id khong duoc nho hon khong");
+//            System.out.print("═╬═══► :");
+//            id = Integer.parseInt(scanner.nextLine());
+//        }
+//        while (!userService.existById(id)) {
+//            System.out.println("id khong ton tai! vui long nhap lai");
+//            id = Integer.parseInt(scanner.nextLine());
+//        }
+//        return id;
+//    }
 
     public void updateUser() {
         boolean isRetry = false;
@@ -192,6 +212,10 @@ public class UserView {
                 System.out.print("═╬═══► ");
                 continue;
             }
+            while (email.trim().equals("")){
+                System.out.println("email khong duoc de trong:");
+                email = scanner.nextLine();
+            }
             break;
         } while (true);
         return email;
@@ -207,7 +231,12 @@ public class UserView {
                 break;
         }
         System.out.print("═╬═══► ");
-        return scanner.nextLine();
+        String adress = scanner.nextLine();
+        while (adress.trim().equals("")) {
+            System.out.println("dia chi khong duoc de trong:");
+            adress = scanner.nextLine();
+        }
+        return adress;
     }
 
     public String inputPhone(InputOption option) {

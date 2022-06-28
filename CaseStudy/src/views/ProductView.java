@@ -112,15 +112,19 @@ public class ProductView {
             showProduct();
             System.out.println("Nhap ten san pham: ");
             String title = scanner.nextLine();
-            do {
-//                title.toLowerCase();
-                if (title.equals("")) {
-                    System.out.println("Ten san pham khong duoc de trong.");
-                    title = scanner.nextLine();
-                    continue;
-                }
-                break;
-            }while (true);
+//            do {
+////                title.toLowerCase();
+//                if (title.trim().equals("")) {
+//                    System.out.println("Ten san pham khong duoc de trong.");
+//                    title = scanner.nextLine();
+//                    continue;
+//                }
+//                break;
+//            }while (true);
+            while (title.trim().equals("")) {
+                System.out.println("Ten san pham khong duoc de trong.");
+                title = scanner.nextLine();
+            }
             productService.searchByName(title.toLowerCase());
         } catch (Exception e) {
             System.out.println("Nhap sai! Vui long nhap lai");
@@ -147,8 +151,8 @@ public class ProductView {
     }
 
     public void launch() {
-
-        while (true) {
+        int choice;
+        do {
             System.out.print("\t\t████████████████████████████████████████████████████████████████████████████████████████████████████" +
                     "\n\t\t█                                                                                                  █" +
                     "\n\t\t█                                        QUAN LI SAN PHAM                                          █" +
@@ -166,7 +170,7 @@ public class ProductView {
                     "\n\t\t█                                                                                                  █" +
                     "\n\t\t████████████████████████████████████████████████████████████████████████████████████████████████████\n" +
                     "\n\t\tChon chuc nang ma ban muon: ");
-            int choice = scanner.nextInt();
+            choice = scanner.nextInt();
 
             switch (choice) {
                 case 1:
@@ -199,7 +203,7 @@ public class ProductView {
                 default:
                     System.out.println("So da chon khong hop le! Vui long nhap lai.");
             }
-        }
+        } while (true);
     }
 
     // kiem tra ten, gia, so luong sp

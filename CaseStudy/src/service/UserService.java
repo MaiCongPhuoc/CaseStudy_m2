@@ -35,7 +35,7 @@ public class UserService implements IUserService {
 
     @Override
     public User adminLogin(String username, String password) {
-        List<User> users = findAll();//null
+        List<User> users = findAll();
         for (User user : users) {
             if (user.getUsername().equals(username) && user.getPassword().equals(password)
                     && user.getRole().equals(Role.ADMIN)) {
@@ -43,6 +43,19 @@ public class UserService implements IUserService {
             }
         }
         return null;
+    }
+
+    @Override
+    public void deleteUser(User newUser) {
+        List<User> users = findAll();
+        for (User user : users) {
+            if (newUser.getId().equals(user.getId())) {
+                if (user.getRole().equals(Role.USER)) {
+                    users.remove(user);
+                }
+                CSVUtils.write(PATH, users);
+            }
+        }
     }
 
     @Override
@@ -73,7 +86,7 @@ public class UserService implements IUserService {
                 if (email != null && !email.isEmpty())
                     user.setEmail(newUser.getEmail());
                 user.setUpdatedAt(Instant.now());
-                CSVUtils.write("data/users.csv", users);
+                CSVUtils.write(PATH, users);
                 break;
             }
         }

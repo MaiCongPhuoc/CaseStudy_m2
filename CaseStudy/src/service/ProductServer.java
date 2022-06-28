@@ -46,14 +46,14 @@ public class ProductServer implements IProductService {
     public void searchByName(String title) {
         List<Product> productList = findAll();
         for (Product product : productList) {
-            if (product.getTitle().toLowerCase().equals(title)) {
-                System.out.printf("\nSan pham ban muon tim kiem la: \nID:  %s || Ten san pham:  %s || Gia san pham:  %s || So luong:  %s || Ngay tao:  %s || Ngay cap nhat:  %s\n\n",
+            if (product.getTitle().toLowerCase().replace(" ","").equals(title.replace(" ",""))) {
+                System.out.printf("\nSan pham ban muon tim kiem la: \n█  ID:  %s █ Ten san pham:  %s █ Gia san pham:  %s █ So luong:  %s █ Ngay tao:  %s Nuoc Revive Ngay cap nhat:  %s  █\n\n",
                         product.getId(),
                         product.getTitle(),
                         InstantUtils.doubleToVND(product.getPrice()),
                         InstantUtils.quantityProducts(product.getQuantity()),
                         InstantUtils.instantToString(product.getCreatedAt()),
-                        InstantUtils.instantToString(product.getUpdatedAt()));
+                        product.getUpdatedAt() == null ? "chua co": InstantUtils.instantToString(product.getUpdatedAt()));
                 return;
             }
         }
@@ -64,13 +64,13 @@ public class ProductServer implements IProductService {
         List<Product> productList = findAll();
         for (Product product : productList) {
             if (product.getId().equals(id)) {
-                System.out.printf("San pham ban muon tim kiem la: \nID:  %s || Ten san pham:  %s || Gia san pham:  %s || So luong:  %s || Ngay tao:  %s || Ngay cap nhat:  %s\n",
+                System.out.printf("San pham ban muon tim kiem la: \nID:  %s █ Ten san pham:  %s █ Gia san pham:  %s █ So luong:  %s █ Ngay tao:  %s █ Ngay cap nhat:  %s\n",
                         product.getId(),
                         product.getTitle(),
                         InstantUtils.doubleToVND(product.getPrice()),
                         InstantUtils.quantityProducts(product.getQuantity()),
                         InstantUtils.instantToString(product.getCreatedAt()),
-                        InstantUtils.instantToString(product.getUpdatedAt()));
+                        product.getUpdatedAt() == null ? "chua co": InstantUtils.instantToString(product.getUpdatedAt()));
                 return;
             }
         }

@@ -9,7 +9,7 @@ public interface IUserService {
     User adminLogin(String username, String password);
     void add(User newUser);
     void update(User newUser);
-//    void deleteUser(User newUser);
+    void deleteUser(User newUser);
     boolean existById(int id);
     boolean existsByEmail(String email);
     boolean existsByPhone(String phone);

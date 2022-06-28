@@ -31,6 +31,10 @@ public class OrderView {
         System.out.println("Nhap so luong don hang ma ban muon mua");
         System.out.print("═╬═══► :");
         int choice = Integer.parseInt(scanner.nextLine());
+        while (choice < 0) {
+            System.out.println("so luong hoa don khong duoc am:");
+            choice = scanner.nextInt();
+        }
         int count = 0;
         do {
             try {
